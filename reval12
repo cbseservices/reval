@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Re-evaluation Application Submission</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    input, select {
+      margin: 5px;
+      padding: 5px;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Re-evaluation Application Submission</h2>
+
+<p><strong>Important Instructions:</strong> Please read the following guidelines carefully before proceeding.</p>
+<ol>
+  <li>Select the subject, and enter the question number, page number, marks awarded, claimed marks, and the reason for re-evaluation.</li>
+  <li>Submit one question per entry.</li>
+  <li>Click "Save" to add your entry to the table below.</li>
+</ol>
+
+<table id="evalTable">
+  <thead>
+    <tr>
+      <th>Subject</th>
+      <th>Question No.</th>
+      <th>Answer Book Page No.</th>
+      <th>Marks Awarded</th>
+      <th>Marks Claimed</th>
+      <th>Reason for Re-evaluation</th>
+    </tr>
+  </thead>
+  <tbody id="formBody">
+    <!-- Entries will be appended here -->
+  </tbody>
+</table>
+
+<hr>
+
+<div id="newEntryForm">
+  <select id="subject">
+    <option value="Physics">Physics</option>
+    <option value="Chemistry">Chemistry</option>
+    <option value="Maths">Maths</option>
+    <option value="Computer Science">Computer Science</option>
+    <option value="English">English</option>
+  </select>
+  <input type="number" id="qno" placeholder="Question No." />
+  <input type="number" id="page" placeholder="Page No." />
+  <input type="number" id="awarded" placeholder="Marks Awarded" />
+  <input type="number" id="claimed" placeholder="Marks Claimed" />
+  <input type="text" id="reason" placeholder="Reason for Re-evaluation" />
+  <button onclick="saveEntry()">Save</button>
+</div>
+
+<script>
+function saveEntry() {
+  const subject = document.getElementById('subject').value;
+  const qno = document.getElementById('qno').value;
+  const page = document.getElementById('page').value;
+  const awarded = document.getElementById('awarded').value;
+  const claimed = document.getElementById('claimed').value;
+  const reason = document.getElementById('reason').value;
+
+  // Validate all fields before submission
+  if (!qno || !page || !awarded || !claimed || !reason) {
+    alert("Please complete all fields before saving the entry.");
+    return;
+  }
+
+  // Create a new table row with the submitted data
+  const row = `<tr>
+    <td>${subject}</td>
+    <td>${qno}</td>
+    <td>${page}</td>
+    <td>${awarded}</td>
+    <td>${claimed}</td>
+    <td>${reason}</td>
+  </tr>`;
+
+  // Append the new row to the table body
+  document.getElementById('formBody').innerHTML += row;
+
+  // Clear form fields for the next entry
+  document.getElementById('qno').value = "";
+  document.getElementById('page').value = "";
+  document.getElementById('awarded').value = "";
+  document.getElementById('claimed').value = "";
+  document.getElementById('reason').value = "";
+}
+</script>
+
+</body>
+</html>
